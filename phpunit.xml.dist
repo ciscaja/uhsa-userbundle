@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit bootstrap="./tests/app/bootstrap.php" colors="true">
+    <testsuites>
+        <testsuite name="CiscajaUhsaUserBundle test suite">
+            <directory suffix="Test.php">./tests</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+        <server name="KERNEL_DIR" value="tests/app" />
+        <env name="BOOTSTRAP_CLEAR_CACHE_ENV" value="test" />
+    </php>
+    <filter>
+        <whitelist>
+            <directory>./src/Ciscaja/Uhsa/UserBundle/</directory>
+            <exclude>
+                <directory>./src/Ciscaja/Uhsa/UserBundle/Resources</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+</phpunit>
