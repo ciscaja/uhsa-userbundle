@@ -23,16 +23,16 @@ class RoleTest extends \PHPUnit_Framework_TestCase
     public function testName()
     {
         $role = self::getRole();
-        $this->assertNull($role->getName());
+        $this->assertNull($role->getRole());
 
-        $this->setName('ROLE_USER');
-        $this->assertEquals('ROLE_USER',$role->getName());
+        $role->setRole('ROLE_USER');
+        $this->assertEquals('ROLE_USER',$role->getRole());
     }
 
     public function testSetNameRole()
     {
         $role = self::getRole();
-        $this->assertSame($role->setName('ROLE_USER'), $role);
+        $this->assertSame($role->setRole('ROLE_USER'), $role);
     }
 
     public function testRoleToStringName()
@@ -40,7 +40,7 @@ class RoleTest extends \PHPUnit_Framework_TestCase
         $role = self::getRole();
         $this->assertEmpty((string)$role);
 
-        $this->setName('ROLE_USER');
+        $role->setRole('ROLE_USER');
         $this->assertEquals('ROLE_USER',(string)$role);
     }
 
