@@ -82,13 +82,23 @@ class UserTest extends \PHPUnit_Framework_TestCase
 
     public function testGetRoles()
     {
+        $user_role1 = $this
+            ->getMockBuilder('Ciscaja\Uhsa\UserBundle\Model\Role')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $user_role2 = $this
+            ->getMockBuilder('Ciscaja\Uhsa\UserBundle\Model\Role')
+            ->disableOriginalConstructor()
+            ->getMock();
+
         $user = self::getUser();
 
         $user
-            ->addRole('ROLE_USER')
-            ->addRole('ROLE_ADMIN');
+            ->addRole($user_role1)
+            ->addRole($user_role2);
 
-        $this->assertEquals(array('ROLE_USER','ROLE_ADMIN'), $user->getRoles(), '',  0.0, 10, true);
+        $this->assertCount(2,$user->getRoles());
     }
 
     public function testAddRoles()
@@ -97,10 +107,6 @@ class UserTest extends \PHPUnit_Framework_TestCase
             ->getMockBuilder('Ciscaja\Uhsa\UserBundle\Model\Role')
             ->disableOriginalConstructor()
             ->getMock();
-
-        $user_role
-            ->method('__toString')
-            ->willReturn('ROLE_USER');
 
         $user = self::getUser();
 
@@ -116,10 +122,6 @@ class UserTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $user_role
-            ->method('__toString')
-            ->willReturn('ROLE_USER');
-
         $user = self::getUser();
 
         $user->addRole($user_role);
@@ -134,17 +136,11 @@ class UserTest extends \PHPUnit_Framework_TestCase
             ->getMockBuilder('Ciscaja\Uhsa\UserBundle\Model\Role')
             ->disableOriginalConstructor()
             ->getMock();
-        $user_role
-            ->method('__toString')
-            ->willReturn('ROLE_USER');
 
         $admin_role = $this
             ->getMockBuilder('Ciscaja\Uhsa\UserBundle\Model\Role')
             ->disableOriginalConstructor()
             ->getMock();
-        $admin_role
-            ->method('__toString')
-            ->willReturn('ROLE_ADMIN');
 
         $user = self::getUser();
 
@@ -152,9 +148,13 @@ class UserTest extends \PHPUnit_Framework_TestCase
             ->addRole($user_role)
             ->addRole($admin_role);
         $this->assertCount(2,$user->getRoles());
-        $user
-            ->removeRole($user_role)
-            ->removeRole($admin_role);
+
+        $user->removeRole($user_role);
+
+        $this->assertFalse($user->hasRole($user_role));
+        $this->assertTrue($user->hasRole($admin_role));
+
+        $user->removeRole($admin_role);
         $this->assertCount(0,$user->getRoles());
     }
 }
