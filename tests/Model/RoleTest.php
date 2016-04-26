@@ -67,6 +67,23 @@ class RoleTest extends \PHPUnit_Framework_TestCase
     /*
      * Uhsa
      */
+    // view
+    public function testViewUserPermission()
+    {
+        $role = self::getRole();
+        $this->assertFalse($role->canViewUser());
+
+        $role->setViewUserAllowed(true);
+        $this->assertTrue($role->canViewUser());
+    }
+
+    public function testSetViewUserPermissionReturn()
+    {
+        $role = self::getRole();
+
+        $this->assertSame($role->setLoginAllowed(true), $role);
+    }
+    
     // create
     public function testCreateUserPermission()
     {
