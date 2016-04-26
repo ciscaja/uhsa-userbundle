@@ -60,7 +60,7 @@ class RoleTest extends \PHPUnit_Framework_TestCase
             ->addUser($user1)
             ->addUser($user2);
 
-        $this->assertCount(2, $role->getRoles());
+        $this->assertCount(2, $role->getUsers());
     }
 
     public function testAddUser()
