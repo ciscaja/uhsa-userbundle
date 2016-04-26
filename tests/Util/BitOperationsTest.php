@@ -46,17 +46,17 @@ class BitwiseFlagTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse($this->invokeMethod($bitwise_flag, 'isFlagSet', array(
             &$test_bitfield,
-            &$test_bitmask
+            $test_bitmask
         )));
 
         $this->invokeMethod($bitwise_flag, 'setFlag', array(
             &$test_bitfield,
-            &$test_bitmask,
+            $test_bitmask,
             true
         ));
         $this->assertTrue($this->invokeMethod($bitwise_flag, 'isFlagSet', array(
             &$test_bitfield,
-            &$test_bitmask
+            $test_bitmask
         )));
     }
 
@@ -72,7 +72,7 @@ class BitwiseFlagTest extends \PHPUnit_Framework_TestCase
             $bitmask = \pow(2, $run);
             $this->invokeMethod($bitwise_flag, 'setFlag', array(
                 &$test_bitfield,
-                &$bitmask,
+                $bitmask,
                 true
             ));
         }
@@ -82,12 +82,12 @@ class BitwiseFlagTest extends \PHPUnit_Framework_TestCase
             if ($run % 2 == 0) {
                 $this->assertTrue($this->invokeMethod($bitwise_flag, 'isFlagSet', array(
                     &$test_bitfield,
-                    &$bitmask
+                    $bitmask
                 )));
             } else {
                 $this->assertFalse($this->invokeMethod($bitwise_flag, 'isFlagSet', array(
                     &$test_bitfield,
-                    &$bitmask
+                    $bitmask
                 )));
             }
         }

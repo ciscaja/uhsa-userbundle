@@ -19,7 +19,7 @@ trait BitOperations
      *
      * @return bool
      */
-    protected function isFlagSet(&$bitfield, &$bitmask)
+    protected function isFlagSet(&$bitfield, $bitmask)
     {
         return (($bitfield & $bitmask) == $bitmask);
     }
@@ -29,7 +29,7 @@ trait BitOperations
      * @param int  $bitmask
      * @param bool $enable
      */
-    protected function setFlag(&$bitfield, &$bitmask, $enable)
+    protected function setFlag(&$bitfield, $bitmask, $enable)
     {
         if ($enable === true) {
             $bitfield |= $bitmask;
