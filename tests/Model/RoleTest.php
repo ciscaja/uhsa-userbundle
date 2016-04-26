@@ -29,7 +29,7 @@ class RoleTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('ROLE_USER', $role->getRole());
     }
 
-    public function testSetNameRole()
+    public function testSetNameReturn()
     {
         $role = self::getRole();
         $this->assertSame($role->setRole('ROLE_USER'), $role);
@@ -77,6 +77,18 @@ class RoleTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($role->hasUser($user));
     }
 
+    public function testAddUserReturn()
+    {
+        $user = $this
+            ->getMockBuilder('Ciscaja\Uhsa\UserBundle\Model\User')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $role = self::getRole();
+
+        $this->assertSame($role->addUser($user), $role);
+    }
+
     public function testRemoveUser()
     {
         $user = $this
@@ -90,6 +102,18 @@ class RoleTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($role->hasUser($user));
         $role->removeUser($user);
         $this->assertFalse($role->hasUser($user));
+    }
+
+    public function testRemoveUserReturn()
+    {
+        $user = $this
+            ->getMockBuilder('Ciscaja\Uhsa\UserBundle\Model\User')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $role = self::getRole();
+
+        $this->assertSame($role->removeUser($user), $role);
     }
 
     public function testMultipleUsers()
