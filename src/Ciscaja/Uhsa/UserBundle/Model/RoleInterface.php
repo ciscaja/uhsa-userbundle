@@ -33,4 +33,60 @@ interface RoleInterface extends BaseRoleInterface
      * @return string
      */
     public function __toString();
+
+    /*
+     * Common
+     */
+
+    /**
+     * @return bool
+     */
+    public function canLogin();
+
+    /**
+     * @param bool $allowed
+     *
+     * @return UserInterface
+     */
+    public function setLoginAllowed($allowed);
+
+    /*
+     * Uhsa
+     */
+
+    /**
+     * @return bool
+     */
+    public function canCreateUser();
+
+    /**
+     * @param bool $allowed
+     *
+     * @return UserInterface
+     */
+    public function setCreateUserAllowed($allowed);
+
+    /**
+     * @return bool
+     */
+    public function canEditUser();
+
+    /**
+     * @param bool $allowed
+     *
+     * @return UserInterface
+     */
+    public function setEditUserAllowed($allowed);
+
+    /**
+     * @return bool
+     */
+    public function canDeleteUser();
+
+    /**
+     * @param bool $allowed
+     *
+     * @return UserInterface
+     */
+    public function setDeleteUserAllowed($allowed);
 }
