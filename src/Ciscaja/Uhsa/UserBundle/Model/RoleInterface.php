@@ -57,6 +57,18 @@ interface RoleInterface extends BaseRoleInterface
     /**
      * @return bool
      */
+    public function canViewUser();
+
+    /**
+     * @param bool $allowed
+     *
+     * @return UserInterface
+     */
+    public function setViewUserAllowed($allowed);
+
+    /**
+     * @return bool
+     */
     public function canCreateUser();
 
     /**
