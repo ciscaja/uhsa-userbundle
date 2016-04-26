@@ -11,6 +11,7 @@
 
 namespace Ciscaja\Uhsa\UserBundle\Model;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\Role\RoleInterface as BaseRoleInterface;
 
 interface RoleInterface extends BaseRoleInterface
@@ -25,9 +26,10 @@ interface RoleInterface extends BaseRoleInterface
     /**
      * RoleInterface constructor.
      *
-     * @param null|string $role
+     * @param null|string          $role
+     * @param ArrayCollection|null $users
      */
-    public function __construct($role);
+    public function __construct($role = null, ArrayCollection $users = null);
 
     /**
      * @param string $role

@@ -12,6 +12,7 @@
 namespace Ciscaja\Uhsa\UserBundle\Model;
 
 use Ciscaja\Uhsa\UserBundle\Util\BitOperations;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class Role implements RoleInterface
 {
@@ -23,6 +24,11 @@ class Role implements RoleInterface
     protected $role;
 
     /**
+     * @var ArrayCollection
+     */
+    protected $users;
+
+    /**
      * @var int
      */
     protected $flags;
@@ -32,10 +38,11 @@ class Role implements RoleInterface
      *
      * @param null|string $role
      */
-    public function __construct($role = null)
+    public function __construct($role = null, ArrayCollection $users = null)
     {
         $this->role = $role;
         $this->flags = self::FLAG_NOTHING;
+        $this->users = ($users === null) ? new ArrayCollection : $users;
     }
 
     /**
@@ -56,6 +63,48 @@ class Role implements RoleInterface
     public function getRole()
     {
         return $this->role;
+    }
+
+    /**
+     * @return ArrayCollection|null
+     */
+    public function getUsers()
+    {
+        return $this->users->toArray();
+    }
+
+    /**
+     * @param UserInterface $user
+     *
+     * @return RoleInterface
+     */
+    public function addUser(UserInterface $user)
+    {
+        $this->users->add($user);
+
+        return $this;
+    }
+
+    /**
+     * @param UserInterface $user
+     *
+     * @return RoleInterface
+     */
+    public function removeUser(UserInterface $user)
+    {
+        $this->users->removeElement($user);
+
+        return $this;
+    }
+
+    /**
+     * @param UserInterface $user
+     *
+     * @return bool
+     */
+    public function hasUser(UserInterface $user)
+    {
+        return $this->users->contains($user);
     }
 
     /**
