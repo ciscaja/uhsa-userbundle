@@ -39,7 +39,7 @@ class RoleTest extends \PHPUnit_Framework_TestCase
     public function testUsersDefault()
     {
         $role = self::getRole();
-        $this->assertCount(0, $role->getRoles());
+        $this->assertCount(0, $role->getUsers());
     }
 
     public function testGetUsers()
