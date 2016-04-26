@@ -32,9 +32,35 @@ interface RoleInterface extends BaseRoleInterface
     /**
      * @param string $role
      *
-     * @return UserInterface
+     * @return RoleInterface
      */
     public function setRole($role);
+
+    /**
+     * @return bool
+     */
+    public function getUsers();
+
+    /**
+     * @param UserInterface $user
+     *
+     * @return UserInterface
+     */
+    public function addUser(UserInterface $user);
+
+    /**
+     * @param UserInterface $user
+     *
+     * @return UserInterface
+     */
+    public function removeUser(UserInterface $user);
+
+    /**
+     * @param UserInterface $user
+     *
+     * @return bool
+     */
+    public function hasUser(UserInterface $user);
 
     /**
      * @return string
@@ -53,7 +79,7 @@ interface RoleInterface extends BaseRoleInterface
     /**
      * @param bool $allowed
      *
-     * @return UserInterface
+     * @return RoleInterface
      */
     public function setLoginAllowed($allowed);
 
@@ -69,7 +95,7 @@ interface RoleInterface extends BaseRoleInterface
     /**
      * @param bool $allowed
      *
-     * @return UserInterface
+     * @return RoleInterface
      */
     public function setViewUserAllowed($allowed);
 
@@ -81,7 +107,7 @@ interface RoleInterface extends BaseRoleInterface
     /**
      * @param bool $allowed
      *
-     * @return UserInterface
+     * @return RoleInterface
      */
     public function setCreateUserAllowed($allowed);
 
@@ -93,7 +119,7 @@ interface RoleInterface extends BaseRoleInterface
     /**
      * @param bool $allowed
      *
-     * @return UserInterface
+     * @return RoleInterface
      */
     public function setEditUserAllowed($allowed);
 
@@ -105,7 +131,7 @@ interface RoleInterface extends BaseRoleInterface
     /**
      * @param bool $allowed
      *
-     * @return UserInterface
+     * @return RoleInterface
      */
     public function setDeleteUserAllowed($allowed);
 }
