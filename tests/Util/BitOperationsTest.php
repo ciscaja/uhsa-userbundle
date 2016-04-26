@@ -68,9 +68,7 @@ class BitwiseFlagTest extends \PHPUnit_Framework_TestCase
         $bitwise_flag = $this->getBitwiseFlag();
 
         $test_bitfield = 0;
-        $count = 0;
         for ($run = 0; $run <= 30; ($run += 2)) {
-            $count++;
             $bitmask = \pow(2, $run);
             $this->invokeMethod($bitwise_flag, 'setFlag', array(
                 &$test_bitfield,
