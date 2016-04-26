@@ -35,6 +35,91 @@ class RoleTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($role->setRole('ROLE_USER'), $role);
     }
 
+
+    public function testUsersDefault()
+    {
+        $role = self::getRole();
+        $this->assertCount(0, $role->getRoles());
+    }
+
+    public function testGetUsers()
+    {
+        $user1 = $this
+            ->getMockBuilder('Ciscaja\Uhsa\UserBundle\Model\User')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $user2 = $this
+            ->getMockBuilder('Ciscaja\Uhsa\UserBundle\Model\User')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $role = self::getRole();
+
+        $role
+            ->addUser($user1)
+            ->addUser($user2);
+
+        $this->assertCount(2, $role->getRoles());
+    }
+
+    public function testAddUser()
+    {
+        $user = $this
+            ->getMockBuilder('Ciscaja\Uhsa\UserBundle\Model\User')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $role = self::getRole();
+
+        $this->assertFalse($role->hasUser($user));
+        $role->addUser($user);
+        $this->assertTrue($role->hasUser($user));
+    }
+
+    public function testRemoveUser()
+    {
+        $user = $this
+            ->getMockBuilder('Ciscaja\Uhsa\UserBundle\Model\User')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $role = self::getRole();
+
+        $role->addUser($user);
+        $this->assertTrue($role->hasUser($user));
+        $role->removeUser($user);
+        $this->assertFalse($role->hasUser($user));
+    }
+
+    public function testMultipleUsers()
+    {
+        $user = $this
+            ->getMockBuilder('Ciscaja\Uhsa\UserBundle\Model\User')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $admin = $this
+            ->getMockBuilder('Ciscaja\Uhsa\UserBundle\Model\User')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $role = self::getRole();
+
+        $role
+            ->addUser($user)
+            ->addUser($admin);
+        $this->assertCount(2, $role->getUsers());
+
+        $role->removeUser($user);
+
+        $this->assertFalse($role->hasUser($user));
+        $this->assertTrue($role->hasUser($admin));
+
+        $role->removeUser($admin);
+        $this->assertCount(0, $role->getUsers());
+    }
+
     public function testRoleToStringName()
     {
         $role = self::getRole();
@@ -83,7 +168,7 @@ class RoleTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame($role->setLoginAllowed(true), $role);
     }
-    
+
     // create
     public function testCreateUserPermission()
     {
