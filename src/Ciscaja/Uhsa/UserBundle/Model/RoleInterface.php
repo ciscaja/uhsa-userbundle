@@ -15,6 +15,12 @@ use Symfony\Component\Security\Core\Role\RoleInterface as BaseRoleInterface;
 
 interface RoleInterface extends BaseRoleInterface
 {
+    const FLAG_SYSTEM_LOGIN = 1;
+    const FLAG_USER_VIEW = 2;
+    const FLAG_USER_CREATE = 4;
+    const FLAG_USER_EDIT = 8;
+    const FLAG_USER_DELETE = 16;
+
     /**
      * RoleInterface constructor.
      *
