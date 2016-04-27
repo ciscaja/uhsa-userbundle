@@ -1,5 +1,11 @@
 framework:
     secret: "Three can keep a secret, if two of them are dead."
+    test: ~
+    session:
+        storage_id: session.storage.mock_file
+
+liip_functional_test:
+    cache_sqlite_db: true
 
 doctrine:
     dbal:
