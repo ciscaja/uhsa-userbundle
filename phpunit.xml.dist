@@ -8,7 +8,6 @@
     </testsuites>
     <php>
         <server name="KERNEL_DIR" value="tests/app" />
-        <env name="BOOTSTRAP_CLEAR_CACHE_ENV" value="test" />
     </php>
     <filter>
         <whitelist>
