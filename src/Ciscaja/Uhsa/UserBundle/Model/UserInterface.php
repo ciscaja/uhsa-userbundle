@@ -17,16 +17,6 @@ use Symfony\Component\Security\Core\User\UserInterface as BaseUserInterface;
 interface UserInterface extends BaseUserInterface
 {
     /**
-     * UserInterface constructor.
-     *
-     * @param null|string          $username
-     * @param null|string          $password
-     * @param null|string          $email
-     * @param ArrayCollection|null $roles
-     */
-    public function __construct($username = null, $password = null, $email = null, ArrayCollection $roles = null);
-
-    /**
      * @param string $username
      *
      * @return UserInterface

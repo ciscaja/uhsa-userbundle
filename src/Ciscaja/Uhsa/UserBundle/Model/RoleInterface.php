@@ -24,14 +24,6 @@ interface RoleInterface extends BaseRoleInterface
     const FLAG_USER_DELETE = 16;
 
     /**
-     * RoleInterface constructor.
-     *
-     * @param null|string          $role
-     * @param ArrayCollection|null $users
-     */
-    public function __construct($role = null, ArrayCollection $users = null);
-
-    /**
      * @param string $role
      *
      * @return RoleInterface
