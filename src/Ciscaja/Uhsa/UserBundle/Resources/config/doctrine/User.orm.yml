@@ -1,0 +1,32 @@
+Ciscaja\Uhsa\UserBundle\Entity\User:
+  type: entity
+  table: ciscaja_uhsa_users
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    username:
+      type: string
+      length: 256
+      unique: true
+    password:
+      type: string
+      length: 256
+    email:
+      type: text
+      length: 256
+      unique: true
+  manyToMany:
+    roles:
+      targetEntity: Ciscaja\Uhsa\UserBundle\Entity\Role
+      inversedBy: users
+      cascade: ["persist"]
+      joinTable:
+        name: ciscaja_uhsa_users_role
+        joinColumns:
+          user_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          role_id:
+            referencedColumnName: id
