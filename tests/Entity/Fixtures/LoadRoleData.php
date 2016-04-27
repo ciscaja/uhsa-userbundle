@@ -12,10 +12,11 @@
 namespace Ciscaja\Uhsa\UserBundle\Tests\Entity\Fixtures;
 
 use Ciscaja\Uhsa\UserBundle\Entity\Role;
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class LoadRoleData implements FixtureInterface
+class LoadRoleData extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -23,5 +24,12 @@ class LoadRoleData implements FixtureInterface
 
         $manager->persist($role);
         $manager->flush();
+
+        $this->addReference('foo-role', $role);
+    }
+
+    public function getOrder()
+    {
+        return 1;
     }
 }
