@@ -82,6 +82,9 @@ class Role implements RoleInterface
     {
         $this->users->add($user);
 
+        if ($user->hasRole($this) === false)
+            $user->addRole($this);
+
         return $this;
     }
 
@@ -94,6 +97,9 @@ class Role implements RoleInterface
     {
         $this->users->removeElement($user);
 
+        if ($user->hasRole($this) === true)
+            $user->removeRole($this);
+        
         return $this;
     }
 

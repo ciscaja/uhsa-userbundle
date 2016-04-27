@@ -150,6 +150,9 @@ class User implements UserInterface
     {
         $this->roles->add($role);
 
+        if ($role->hasUser($this) === false)
+            $role->addUser($this);
+
         return $this;
     }
 
@@ -162,6 +165,9 @@ class User implements UserInterface
     {
         $this->roles->removeElement($role);
 
+        if ($role->hasUser($this) === true)
+            $role->removeUser($this);
+        
         return $this;
     }
 
