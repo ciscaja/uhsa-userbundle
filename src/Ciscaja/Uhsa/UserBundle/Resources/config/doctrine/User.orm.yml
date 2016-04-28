@@ -14,7 +14,7 @@ Ciscaja\Uhsa\UserBundle\Entity\User:
       type: string
       length: 256
     email:
-      type: text
+      type: string
       length: 256
       unique: true
   manyToMany:
