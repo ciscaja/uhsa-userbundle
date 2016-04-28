@@ -34,7 +34,7 @@ class UserTest extends WebTestCase
         /** @var EntityManager $manager */
         $manager = $this->getContainer()->get('doctrine')->getManager();
 
-        $user = new User('foo', 'bar', 'foo@bar', true);
+        $user = new User('foo', 'bar', 'foo@bar', false);
 
         $manager->persist($user);
         $manager->flush();
@@ -58,8 +58,8 @@ class UserTest extends WebTestCase
         $this->assertEquals('foo', $user->getUsername());
         $this->assertEquals('bar', $user->getPassword());
         $this->assertEquals('foo@bar', $user->getEmail());
-        $this->assertTrue($user->isEnabled());
-
+        $this->assertFalse($user->isDisabled());
+        $this->assertFalse($user->isDeleted());
     }
 
     public function testInsertUserFailCauseUserNull()
