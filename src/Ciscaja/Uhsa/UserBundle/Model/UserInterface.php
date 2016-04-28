@@ -12,9 +12,9 @@
 namespace Ciscaja\Uhsa\UserBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface as BaseUserInterface;
 
-interface UserInterface extends AdvancedUserInterface
+interface UserInterface extends BaseUserInterface
 {
     /**
      * @param string $username
