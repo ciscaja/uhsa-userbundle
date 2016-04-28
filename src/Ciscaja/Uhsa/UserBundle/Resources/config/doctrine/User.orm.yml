@@ -17,6 +17,9 @@ Ciscaja\Uhsa\UserBundle\Entity\User:
       type: string
       length: 256
       unique: true
+    salt:
+      type: string
+      length: 256
   manyToMany:
     roles:
       targetEntity: Ciscaja\Uhsa\UserBundle\Entity\Role
