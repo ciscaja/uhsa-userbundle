@@ -46,6 +46,11 @@ class User implements UserInterface
     protected $deleted;
 
     /**
+     * @var bool
+     */
+    protected $admin;
+    
+    /**
      * @var ArrayCollection
      */
     protected $roles;
@@ -68,6 +73,7 @@ class User implements UserInterface
         $this->email = $email;
         $this->disabled = $disabled;
         $this->deleted = false;
+        $this->admin = false;
         $this->roles = ($roles === null) ? new ArrayCollection : $roles;
     }
 
@@ -230,6 +236,26 @@ class User implements UserInterface
     public function setDeleted($deleted)
     {
         $this->deleted = $deleted;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        return $this->admin;
+    }
+
+    /**
+     * @param bool $admin
+     *
+     * @return User
+     */
+    public function setAdmin($admin)
+    {
+        $this->admin = $admin;
 
         return $this;
     }
