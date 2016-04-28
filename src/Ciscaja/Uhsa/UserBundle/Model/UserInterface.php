@@ -86,6 +86,18 @@ interface UserInterface extends BaseUserInterface
      * @return UserInterface
      */
     public function setDeleted($deleted);
+    
+    /**
+     * @return bool
+     */
+    public function isAdmin();
+
+    /**
+     * @param bool $admin
+     *
+     * @return UserInterface
+     */
+    public function setAdmin($admin);
 
     /**
      * @return string
