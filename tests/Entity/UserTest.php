@@ -20,6 +20,7 @@ use Liip\FunctionalTestBundle\Test\WebTestCase;
  * This test might seem as its testing doctrine itself but its merely for testing that the schema definition is correct
  * and working as expected -> unique, nullable etc.
  */
+
 class UserTest extends WebTestCase
 {
     protected static function getUser()
@@ -33,7 +34,7 @@ class UserTest extends WebTestCase
         /** @var EntityManager $manager */
         $manager = $this->getContainer()->get('doctrine')->getManager();
 
-        $user = new User('foo', 'bar', 'foot@bar');
+        $user = new User('foo', 'bar', 'foo@bar', true);
 
         $manager->persist($user);
         $manager->flush();
@@ -52,9 +53,12 @@ class UserTest extends WebTestCase
         /** @var User $user */
         $user = $qb->getQuery()->getSingleResult();
 
-        $this->assertInstanceOf('Ciscaja\Uhsa\UserBundle\Model\User', $user);
         $this->assertEquals($user_id, $user->getId());
-        $this->assertEquals($user_salt,$user->getSalt());
+        $this->assertEquals($user_salt, $user->getSalt());
+        $this->assertEquals('foo', $user->getUsername());
+        $this->assertEquals('bar', $user->getPassword());
+        $this->assertEquals('foo@bar', $user->getEmail());
+        $this->assertTrue($user->isEnabled());
 
     }
 
