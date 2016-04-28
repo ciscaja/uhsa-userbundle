@@ -13,12 +13,14 @@
 namespace Ciscaja\Uhsa\UserBundle\DataFixtures\ORM;
 
 use Ciscaja\Uhsa\UserBundle\Entity\Role;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class LoadDefaultRoles implements FixtureInterface, ContainerAwareInterface
+class LoadDefaultRoles extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
     /**
      * @var ContainerInterface
@@ -32,27 +34,16 @@ class LoadDefaultRoles implements FixtureInterface, ContainerAwareInterface
 
     public function load(ObjectManager $manager)
     {
-        $manager->persist($this->getAdminRole());
-        $manager->persist($this->getUserManagerRole());
-        $manager->persist($this->getUserRole());
+        $user_manager_role = $this->getUserManagerRole();
+        $manager->persist($user_manager_role);
+        $this->addReference('user-manager-role', $user_manager_role);
+
+        $user_role = $this->getUserRole();
+        $manager->persist($user_role);
+        $this->addReference('user-role', $user_role);
+
         $manager->flush();
     }
-
-    /**
-     * @return Role
-     */
-    protected function getAdminRole()
-    {
-        $role = new Role('CISCAJA_ADMIN');
-        $role
-            ->setLoginAllowed(true)
-            ->setEditUserAllowed(true)
-            ->setCreateUserAllowed(true)
-            ->setDeleteUserAllowed(true)
-            ->setViewUserAllowed(true);
-        return $role;
-    }
-
 
     /**
      * @return Role
@@ -66,6 +57,7 @@ class LoadDefaultRoles implements FixtureInterface, ContainerAwareInterface
             ->setCreateUserAllowed(true)
             ->setDeleteUserAllowed(true)
             ->setViewUserAllowed(true);
+
         return $role;
     }
 
@@ -75,6 +67,14 @@ class LoadDefaultRoles implements FixtureInterface, ContainerAwareInterface
     protected function getUserRole()
     {
         $role = new Role('CISCAJA_USER');
+
+        $role->setLoginAllowed(true);
+
         return $role;
+    }
+
+    public function getOrder()
+    {
+        return 1;
     }
 }

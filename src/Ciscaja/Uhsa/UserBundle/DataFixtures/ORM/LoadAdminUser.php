@@ -13,12 +13,14 @@
 namespace Ciscaja\Uhsa\UserBundle\DataFixtures\ORM;
 
 use Ciscaja\Uhsa\UserBundle\Entity\User;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class LoadAdminUser implements FixtureInterface, ContainerAwareInterface
+class LoadAdminUser extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
     /**
      * @var ContainerInterface
@@ -36,6 +38,7 @@ class LoadAdminUser implements FixtureInterface, ContainerAwareInterface
         $user->setUsername('admin');
         $user->setEmail('admin@demo.de');
         $user->setDisabled(false);
+        $user->addRole($this->getReference('user-role'));
 
         $encoder = $this->container->get('security.password_encoder');
         $password = $encoder->encodePassword($user, 'admin');
@@ -43,5 +46,10 @@ class LoadAdminUser implements FixtureInterface, ContainerAwareInterface
 
         $manager->persist($user);
         $manager->flush();
+    }
+
+    public function getOrder()
+    {
+        return 2;
     }
 }
