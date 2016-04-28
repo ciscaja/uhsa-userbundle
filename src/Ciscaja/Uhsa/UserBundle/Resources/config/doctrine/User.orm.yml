@@ -20,8 +20,6 @@ Ciscaja\Uhsa\UserBundle\Entity\User:
     salt:
       type: string
       length: 256
-    enabled:
-      type: boolean
   manyToMany:
     roles:
       targetEntity: Ciscaja\Uhsa\UserBundle\Entity\Role
