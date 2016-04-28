@@ -24,6 +24,8 @@ Ciscaja\Uhsa\UserBundle\Entity\User:
       type: boolean
     deleted:
       type: boolean
+    admin:
+      type: boolean
   manyToMany:
     roles:
       targetEntity: Ciscaja\Uhsa\UserBundle\Entity\Role
