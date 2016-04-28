@@ -73,7 +73,23 @@ class UserTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame($user->setEmail('email@email.email'), $user);
     }
+    
+    public function testIsEnabled()
+    {
+        $user = self::getUser();
+        $this->assertFalse($user->isEnabled());
 
+        $user->setEnabled(true);
+        $this->assertTrue($user->isEnabled());
+    }
+
+    public function testSetEnabledReturn()
+    {
+        $user = self::getUser();
+
+        $this->assertSame($user->setEnabled(true), $user);
+    }
+    
     public function testRolesDefault()
     {
         $user = self::getUser();
