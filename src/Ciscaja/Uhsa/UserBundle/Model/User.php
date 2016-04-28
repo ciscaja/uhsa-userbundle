@@ -36,6 +36,16 @@ class User implements UserInterface
     protected $email;
 
     /**
+     * @var bool
+     */
+    protected $disabled;
+
+    /**
+     * @var bool
+     */
+    protected $deleted;
+
+    /**
      * @var ArrayCollection
      */
     protected $roles;
@@ -43,18 +53,21 @@ class User implements UserInterface
     /**
      * User constructor.
      *
-     * @param string               $username
-     * @param string               $password
-     * @param string               $email
+     * @param null                 $username
+     * @param null                 $password
+     * @param null                 $email
+     * @param bool                 $disabled
      * @param ArrayCollection|null $roles
      */
-    public function __construct($username = null, $password = null, $email = null, ArrayCollection $roles = null)
+    public function __construct($username = null, $password = null, $email = null, $disabled = true, ArrayCollection $roles = null)
     {
         $this->id = null;
         $this->username = $username;
         $this->salt = \base_convert(\sha1(\uniqid(\mt_rand(), true)), 16, 36);
         $this->password = $password;
         $this->email = $email;
+        $this->disabled = $disabled;
+        $this->deleted = false;
         $this->roles = ($roles === null) ? new ArrayCollection : $roles;
     }
 
@@ -179,6 +192,46 @@ class User implements UserInterface
     public function hasRole(RoleInterface $role)
     {
         return $this->roles->contains($role);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDisabled()
+    {
+        return $this->disabled;
+    }
+
+    /**
+     * @param bool $disabled
+     *
+     * @return User
+     */
+    public function setDisabled($disabled)
+    {
+        $this->disabled = $disabled;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDeleted()
+    {
+        return $this->deleted;
+    }
+
+    /**
+     * @param bool $deleted
+     *
+     * @return User
+     */
+    public function setDeleted($deleted)
+    {
+        $this->deleted = $deleted;
+
+        return $this;
     }
 
     /**
