@@ -38,11 +38,11 @@ class Role implements RoleInterface
      *
      * @param null|string $role
      */
-    public function __construct($role = null, ArrayCollection $users = null)
+    public function __construct($role = null)
     {
         $this->role = $role;
         $this->flags = self::FLAG_NOTHING;
-        $this->users = ($users === null) ? new ArrayCollection : $users;
+        $this->users = new ArrayCollection;
     }
 
     /**

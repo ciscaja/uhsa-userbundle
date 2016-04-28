@@ -36,6 +36,11 @@ class User implements UserInterface
     protected $email;
 
     /**
+     * @var bool
+     */
+    protected $enabled;
+
+    /**
      * @var ArrayCollection
      */
     protected $roles;
@@ -43,19 +48,20 @@ class User implements UserInterface
     /**
      * User constructor.
      *
-     * @param string               $username
-     * @param string               $password
-     * @param string               $email
+     * @param null                 $username
+     * @param null                 $password
+     * @param null                 $email
      * @param ArrayCollection|null $roles
      */
-    public function __construct($username = null, $password = null, $email = null, ArrayCollection $roles = null)
+    public function __construct($username = null, $password = null, $email = null, $enabled = false)
     {
         $this->id = null;
         $this->username = $username;
         $this->salt = \base_convert(\sha1(\uniqid(\mt_rand(), true)), 16, 36);
         $this->password = $password;
         $this->email = $email;
-        $this->roles = ($roles === null) ? new ArrayCollection : $roles;
+        $this->enabled = $enabled;
+        $this->roles = new ArrayCollection;
     }
 
     /**
@@ -179,6 +185,50 @@ class User implements UserInterface
     public function hasRole(RoleInterface $role)
     {
         return $this->roles->contains($role);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * @param bool $enabled
+     *
+     * @return User
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+
+        return $this;
     }
 
     /**
