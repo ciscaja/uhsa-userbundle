@@ -35,7 +35,7 @@ class LoadAdminUser implements FixtureInterface, ContainerAwareInterface
         $user = new User();
         $user->setUsername('admin');
         $user->setEmail('admin@demo.de');
-        $user->setEnabled(true);
+        $user->setDisabled(false);
 
         $encoder = $this->container->get('security.password_encoder');
         $password = $encoder->encodePassword($user, 'admin');
