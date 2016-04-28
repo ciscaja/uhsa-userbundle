@@ -1,0 +1,3 @@
+services:
+    ciscaja.uhsa.userbundle.user_checker:
+        class: 'Ciscaja\Uhsa\UserBundle\Security\UserChecker'
