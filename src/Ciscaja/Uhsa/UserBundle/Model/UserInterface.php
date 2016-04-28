@@ -64,6 +64,30 @@ interface UserInterface extends BaseUserInterface
     public function hasRole(RoleInterface $role);
 
     /**
+     * @return bool
+     */
+    public function isDisabled();
+
+    /**
+     * @param bool $disabled
+     *
+     * @return UserInterface
+     */
+    public function setDisabled($disabled);
+
+    /**
+     * @return bool
+     */
+    public function isDeleted();
+
+    /**
+     * @param bool $deleted
+     *
+     * @return UserInterface
+     */
+    public function setDeleted($deleted);
+
+    /**
      * @return string
      */
     public function __toString();
