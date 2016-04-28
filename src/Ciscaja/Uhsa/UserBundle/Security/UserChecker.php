@@ -11,9 +11,11 @@
 
 namespace Ciscaja\Uhsa\UserBundle\Security;
 
+use Ciscaja\Uhsa\UserBundle\Model\RoleInterface;
 use Ciscaja\Uhsa\UserBundle\Model\UserInterface as AppUser;
 use Ciscaja\Uhsa\UserBundle\Security\Exception\AccountDeletedException;
 use Ciscaja\Uhsa\UserBundle\Security\Exception\AccountDisabledException;
+use Ciscaja\Uhsa\UserBundle\Security\Exception\AccountRoleNoLoginPermissionException;
 use Symfony\Component\Security\Core\Exception\AccountExpiredException;
 use Symfony\Component\Security\Core\User\UserCheckerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -37,6 +39,18 @@ class UserChecker implements UserCheckerInterface
         if ($user->isDisabled()) {
             throw new AccountDisabledException('This user has been disabled.');
         }
+
+        $can_login = false;
+        /** @var RoleInterface $role */
+        foreach ($user->getRoles() as $role) {
+            if($role->canLogin()) {
+                $can_login = true;
+                continue;
+            }
+        }
+
+        if($can_login === false)
+            throw new AccountRoleNoLoginPermissionException('This user has no role with the login permission.');
     }
 
     /**
