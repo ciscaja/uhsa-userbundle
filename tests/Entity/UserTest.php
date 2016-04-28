@@ -39,7 +39,7 @@ class UserTest extends WebTestCase
         $manager->flush();
 
         $user_id = $user->getId();
-
+        $user_salt = $user->getSalt();
         $manager->clear();
 
         $qb = $manager->createQueryBuilder();
@@ -54,6 +54,8 @@ class UserTest extends WebTestCase
 
         $this->assertInstanceOf('Ciscaja\Uhsa\UserBundle\Model\User', $user);
         $this->assertEquals($user_id, $user->getId());
+        $this->assertEquals($user_salt,$user->getSalt());
+
     }
 
     public function testInsertUserFailCauseUserNull()
