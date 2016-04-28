@@ -34,6 +34,7 @@ class RoleTest extends WebTestCase
         $manager = $this->getContainer()->get('doctrine')->getManager();
 
         $role = new Role('foo');
+        $role->setLoginAllowed(true);
 
         $manager->persist($role);
         $manager->flush();
@@ -52,8 +53,9 @@ class RoleTest extends WebTestCase
         /** @var Role $role */
         $role = $qb->getQuery()->getSingleResult();
 
-        $this->assertInstanceOf('Ciscaja\Uhsa\UserBundle\Model\Role', $role);
         $this->assertEquals($role_id, $role->getId());
+        $this->assertTrue(true, $role->canLogin());
+        $this->assertEquals('foo', $role->getRole());
     }
 
     public function testInsertRoleFailCauseRollNull()
