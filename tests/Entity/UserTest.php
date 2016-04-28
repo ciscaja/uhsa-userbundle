@@ -35,6 +35,7 @@ class UserTest extends WebTestCase
         $manager = $this->getContainer()->get('doctrine')->getManager();
 
         $user = new User('foo', 'bar', 'foo@bar', false);
+        $user->setAdmin(true);
 
         $manager->persist($user);
         $manager->flush();
@@ -60,6 +61,7 @@ class UserTest extends WebTestCase
         $this->assertEquals('foo@bar', $user->getEmail());
         $this->assertFalse($user->isDisabled());
         $this->assertFalse($user->isDeleted());
+        $this->assertTrue($user->isAdmin());
     }
 
     public function testInsertUserFailCauseUserNull()

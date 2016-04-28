@@ -105,7 +105,23 @@ class UserTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame($user->setDeleted(true), $user);
     }
-    
+
+    public function testIsAdmin()
+    {
+        $user = self::getUser();
+        $this->assertFalse($user->isAdmin());
+
+        $user->setAdmin(true);
+        $this->assertTrue($user->isAdmin());
+    }
+
+    public function testIsAdminReturn()
+    {
+        $user = self::getUser();
+
+        $this->assertSame($user->setAdmin(true), $user);
+    }
+
     public function testRolesDefault()
     {
         $user = self::getUser();
