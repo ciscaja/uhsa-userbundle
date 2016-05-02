@@ -1,0 +1,6 @@
+version: '2'
+services:
+  ldap:
+    build: "./"
+    ports:
+      - "389:389"

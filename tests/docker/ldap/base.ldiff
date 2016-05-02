@@ -1,0 +1,86 @@
+dn: dc=example,dc=com
+objectClass: dcObject
+objectClass: Organization
+dc: example
+o: Example Inc.
+
+dn: cn=admin,dc=example,dc=com
+objectClass: organizationalRole
+cn: admin
+
+dn: ou=users, dc=example,dc=com
+changetype: add
+ou: users
+objectclass: organizationalunit
+
+dn: ou=application,ou=users,dc=example,dc=com
+changetype: add
+ou: application
+objectclass: organizationalunit
+
+dn: cn=uhsa,ou=application,ou=users,dc=example,dc=com
+cn: uhsa
+objectClass: organizationalRole
+objectClass: simpleSecurityObject
+objectClass: top
+userPassword: uhsa
+
+dn: ou=groups, dc=example,dc=com
+changetype: add
+ou: groups
+objectclass: organizationalunit
+
+dn: cn=pmontas,ou=users,dc=example,dc=com
+changetype: add
+cn: pmontas
+gn: Percy
+sn: Montas
+mail: pmontas@example.com
+objectClass: inetOrgPerson
+objectclass: top
+userPassword: percy
+
+dn: cn=ngodines,ou=users,dc=example,dc=com
+changetype: add
+cn: ngodines
+gn: Nicola
+sn: Godines
+mail: ngodines@example.com
+objectClass: inetOrgPerson
+objectclass: top
+userPassword: nicola
+
+dn: cn=lalvares,ou=users,dc=example,dc=com
+changetype: add
+cn: lalvares
+gn: Lorelei
+sn: Godines
+mail: lalvares@example.com
+objectClass: inetOrgPerson
+objectclass: top
+userPassword: lorelei
+
+dn: cn=hredfern,ou=users,dc=example,dc=com
+changetype: add
+cn: hredfern
+gn: Herberito
+sn: Redfern
+mail: hredfern@example.com
+objectClass: inetOrgPerson
+objectclass: top
+userPassword: herberito
+
+dn: cn=admins, ou=groups, dc=example,dc=com
+changetype: add
+cn: admins
+objectclass: groupOfNames
+objectclass: top
+member: cn=hredfern,ou=users,dc=example,dc=com
+
+dn: cn=users, ou=groups, dc=example,dc=com
+changetype: add
+cn: users
+objectclass: groupOfNames
+objectclass: top
+member: cn=lalvares,ou=users,dc=example,dc=com
+member: cn=ngodines,ou=users,dc=example,dc=com

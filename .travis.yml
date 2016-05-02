@@ -3,14 +3,28 @@ php:
   - '5.6'
   - '7.0'
 
-sudo: false
+sudo: required
+
+addons:
+  apt:
+    packages:
+    - ldap-utils
+
+services:
+  - docker
+
+before_install:
+  - docker build -t ciscaja/openldap ./tests/docker/ldap
+  - docker run -d -p 389:389 ciscaja/openldap
+  - docker ps -a
+  - sleep 5
+  - ldapadd -h 127.0.0.1 -p 389 -c -x -D cn=admin,dc=example,dc=com -f ./tests/docker/ldap/base.ldiff -w examplecom
+  - composer selfupdate
 
 cache:
   directories:
     - $HOME/.composer/cache
 
-before_install:
-  - composer selfupdate
 
 install: composer update --prefer-dist --no-interaction
 
