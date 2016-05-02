@@ -45,7 +45,7 @@ class UserChecker implements UserCheckerInterface
         foreach ($user->getRoles() as $role) {
             if($role->canLogin()) {
                 $can_login = true;
-                continue;
+                break;
             }
         }
 
