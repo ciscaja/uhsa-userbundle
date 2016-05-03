@@ -1,5 +1,6 @@
 Ciscaja\Uhsa\UserBundle\Entity\User:
   type: entity
+  repositoryClass: Ciscaja\Uhsa\UserBundle\Entity\UserRepository
   table: ciscaja_uhsa_users
   id:
     id:
