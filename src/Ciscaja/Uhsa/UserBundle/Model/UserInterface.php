@@ -14,7 +14,7 @@ namespace Ciscaja\Uhsa\UserBundle\Model;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface as BaseUserInterface;
 
-interface UserInterface extends BaseUserInterface
+interface UserInterface
 {
     /**
      * @param string $username
@@ -24,11 +24,21 @@ interface UserInterface extends BaseUserInterface
     public function setUsername($username);
 
     /**
+     * @return string
+     */
+    public function getUsername();
+
+    /**
      * @param string $password
      *
      * @return UserInterface
      */
     public function setPassword($password);
+
+    /**
+     * @return string
+     */
+    public function getPassword();
 
     /**
      * @param string $mail
@@ -41,6 +51,16 @@ interface UserInterface extends BaseUserInterface
      * @return string
      */
     public function getEmail();
+
+    /**
+     * @return string
+     */
+    public function getSalt();
+
+    /**
+     * @return array
+     */
+    public function getRoles();
 
     /**
      * @param RoleInterface $role

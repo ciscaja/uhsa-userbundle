@@ -12,8 +12,9 @@
 namespace Ciscaja\Uhsa\UserBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\UserInterface as BaseUserInterface;
 
-class User implements UserInterface
+class User implements UserInterface, BaseUserInterface
 {
     /**
      * @var string
