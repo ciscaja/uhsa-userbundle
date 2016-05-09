@@ -30,6 +30,9 @@
         "liip/functional-test-bundle": "1.6.*",
         "symfony/phpunit-bridge": "3.0.*"
     },
+    "suggest": {
+        "ciscaja/uhsa-userldapbundle": "For authentication with an LDAP server."
+    },
     "config": {
         "bin-dir": "bin/"
     },
