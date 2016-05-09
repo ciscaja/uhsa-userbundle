@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Ciscaja\Uhsa\UserBundle\Tests\Entity;
+namespace Ciscaja\Uhsa\UserBundle\Tests\Functional\Entity;
 
 use Ciscaja\Uhsa\UserBundle\Entity\Role;
 use Ciscaja\Uhsa\UserBundle\Entity\User;
@@ -89,8 +89,8 @@ class UserRoleTest extends WebTestCase
     public function testRemoveUser()
     {
         $this->loadFixtures(array(
-            'Ciscaja\Uhsa\UserBundle\Tests\Entity\Fixtures\LoadRoleData',
-            'Ciscaja\Uhsa\UserBundle\Tests\Entity\Fixtures\LoadUserRoleData'
+            'Ciscaja\Uhsa\UserBundle\Tests\Functional\Entity\Fixtures\LoadRoleData',
+            'Ciscaja\Uhsa\UserBundle\Tests\Functional\Entity\Fixtures\LoadUserRoleData'
         ));
         /** @var EntityManager $manager */
         $manager = $this->getContainer()->get('doctrine')->getManager();
@@ -131,8 +131,8 @@ class UserRoleTest extends WebTestCase
     public function testRemoveRole()
     {
         $this->loadFixtures(array(
-            'Ciscaja\Uhsa\UserBundle\Tests\Entity\Fixtures\LoadRoleData',
-            'Ciscaja\Uhsa\UserBundle\Tests\Entity\Fixtures\LoadUserRoleData'
+            'Ciscaja\Uhsa\UserBundle\Tests\Functional\Entity\Fixtures\LoadRoleData',
+            'Ciscaja\Uhsa\UserBundle\Tests\Functional\Entity\Fixtures\LoadUserRoleData'
         ));
         /** @var EntityManager $manager */
         $manager = $this->getContainer()->get('doctrine')->getManager();

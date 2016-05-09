@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Ciscaja\Uhsa\UserBundle\Tests\Entity;
+namespace Ciscaja\Uhsa\UserBundle\Tests\Functional\Entity;
 
 use Ciscaja\Uhsa\UserBundle\Entity\Role;
 use Doctrine\DBAL\DBALException;
@@ -75,7 +75,7 @@ class RoleTest extends WebTestCase
     {
         $this->expectException(DBALException::class);
         $this->loadFixtures(array(
-            'Ciscaja\Uhsa\UserBundle\Tests\Entity\Fixtures\LoadRoleData'
+            'Ciscaja\Uhsa\UserBundle\Tests\Functional\Entity\Fixtures\LoadRoleData'
         ));
         /** @var EntityManager $manager */
         $manager = $this->getContainer()->get('doctrine')->getManager();

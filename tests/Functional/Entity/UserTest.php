@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Ciscaja\Uhsa\UserBundle\Tests\Entity;
+namespace Ciscaja\Uhsa\UserBundle\Tests\Functional\Entity;
 
 use Ciscaja\Uhsa\UserBundle\Entity\User;
 use Doctrine\DBAL\DBALException;
@@ -107,7 +107,7 @@ class UserTest extends WebTestCase
     {
         $this->expectException(DBALException::class);
         $this->loadFixtures(array(
-            'Ciscaja\Uhsa\UserBundle\Tests\Entity\Fixtures\LoadUserData'
+            'Ciscaja\Uhsa\UserBundle\Tests\Functional\Entity\Fixtures\LoadUserData'
         ));
         /** @var EntityManager $manager */
         $manager = $this->getContainer()->get('doctrine')->getManager();
@@ -122,7 +122,7 @@ class UserTest extends WebTestCase
     {
         $this->expectException(DBALException::class);
         $this->loadFixtures(array(
-            'Ciscaja\Uhsa\UserBundle\Tests\Entity\Fixtures\LoadUserData'
+            'Ciscaja\Uhsa\UserBundle\Tests\Functional\Entity\Fixtures\LoadUserData'
         ));
         /** @var EntityManager $manager */
         $manager = $this->getContainer()->get('doctrine')->getManager();

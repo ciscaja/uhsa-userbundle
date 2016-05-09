@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Ciscaja\Uhsa\UserBundle\Tests\Entity;
+namespace Ciscaja\Uhsa\UserBundle\Tests\Functional\Entity;
 
 use Ciscaja\Uhsa\UserBundle\Entity\User;
 use Ciscaja\Uhsa\UserBundle\Entity\UserRepository;
@@ -27,7 +27,7 @@ class UserRepositoryTest extends WebTestCase
     public function testLoadUserByUsername()
     {
         $this->loadFixtures(array(
-            'Ciscaja\Uhsa\UserBundle\Tests\Entity\Fixtures\LoadUserData'
+            'Ciscaja\Uhsa\UserBundle\Tests\Functional\Entity\Fixtures\LoadUserData'
         ));
         /** @var UserRepository $repository */
         $repository = $this->getContainer()->get('doctrine')->getRepository('CiscajaUhsaUserBundle:User');
@@ -47,7 +47,7 @@ class UserRepositoryTest extends WebTestCase
     public function testLoadUserByEmail()
     {
         $this->loadFixtures(array(
-            'Ciscaja\Uhsa\UserBundle\Tests\Entity\Fixtures\LoadUserData'
+            'Ciscaja\Uhsa\UserBundle\Tests\Functional\Entity\Fixtures\LoadUserData'
         ));
         /** @var UserRepository $repository */
         $repository = $this->getContainer()->get('doctrine')->getRepository('CiscajaUhsaUserBundle:User');

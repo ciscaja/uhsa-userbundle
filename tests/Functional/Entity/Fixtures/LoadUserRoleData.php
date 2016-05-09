@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Ciscaja\Uhsa\UserBundle\Tests\Entity\Fixtures;
+namespace Ciscaja\Uhsa\UserBundle\Tests\Functional\Entity\Fixtures;
 
 use Ciscaja\Uhsa\UserBundle\Entity\User;
 use Doctrine\Common\DataFixtures\AbstractFixture;
