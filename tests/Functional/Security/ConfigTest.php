@@ -12,14 +12,20 @@
 namespace Ciscaja\Uhsa\UserBundle\Tests\Functional\Security;
 
 
+use Liip\FunctionalTestBundle\Test\WebTestCase;
 use Symfony\Component\Yaml\Parser;
 
-class ConfigTest extends \PHPUnit_Framework_TestCase
+class ConfigTest extends WebTestCase
 {
     public function testUserCheckerServiceYaml()
     {
         $yaml = new Parser();
 
         $yaml->parse(file_get_contents(__DIR__ . '/../../../src/Ciscaja/Uhsa/UserBundle/Resources/config/services/security.yml'));
+    }
+
+    public function testUserCheckerServiceConfigured()
+    {
+        $this->getContainer()->get('ciscaja.uhsa.userbundle.user_checker');
     }
 }
